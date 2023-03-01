@@ -1,24 +1,25 @@
-<div id="<%= dom_id post %>" class="bg-slate-100 p-2 rounded">
-  <% if policy(post).index? %>
-    <p class="my-5">
+<%= turbo_stream_from current_user, post %>
+<div id="<%= dom_id(post) %>" class="bg-slate-100 p-2 rounded">
+  <p class="my-5">
+    <% if policy(post).index? %>
       <strong class="block font-medium mb-1">Title:</strong>
       <%= post.title %>
-    </p>
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Content:</strong>
-      <%= post.content %>
-    </p>
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Author:</strong>
-      <%= post.user.email %>
-    </p>
-    <% if action_name != "show" %>
-      <%= link_to "Show this post", post, class: "rounded-lg py-3 px-5 bg-gray-200 inline-block font-medium" %>
-      <%= link_to 'Edit this post', edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-200 inline-block font-medium" %>
+    <% else %>
+      <div class="bg-red-200 rounded p-1">
+        You do not have sufficient authorization to view this post!
+      </div>
     <% end %>
-  <% else %>
-    <div class="bg-red-200 rounded p-1">
-      You do not have sufficient authorization to view this post!
-    </div>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Content:</strong>
+    <%= post.content %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Author:</strong>
+    <%= post.user.email %>
+  </p>
+  <% if action_name != "show" %>
+    <%= link_to "Show this post", post, class: "rounded-lg py-3 px-5 bg-gray-200 inline-block font-medium" %>
+    <%= link_to 'Edit this post', edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-200 inline-block font-medium" %>
   <% end %>
 </div>
