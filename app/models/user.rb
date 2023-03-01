@@ -6,5 +6,8 @@ class User < ApplicationRecord
 
   has_many :posts
 
-  enum role: { user: :user, admin: :admin }
+  enum role: {
+    user: "user",
+    admin: "admin"
+  }
 end
