@@ -1,0 +1,14 @@
+<nav class="bg-slate-200">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex flex-row h-14 items-center justify-between">
+      <h2>Turbo Pundit Example App</h2>
+      <div class="flex px-4 py-2.5 rounded-lg border-gray-100 flex-row space-x-8 mt-0 text-sm font-medium border-0">
+        <% if current_user %>
+          <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete, turbo_target: "_top"}, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium hover:bg-blue-7" %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium hover:bg-blue-7" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>
